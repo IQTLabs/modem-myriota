@@ -23,17 +23,23 @@ The Myriota module functions as a modem in this application.
 
 Sensor/controller MCU should send data to the Myriota module using the LEUART pins.
 ```
-// ┌───────────────┐                 ┌────────────────────┐
-// │               │                 │                    │
-// │           3.3V├─────────────────┤VEXT                │
-// │               │                 │                    │
-// │            GND├─────────────────┤GND                 │
-// │   SENSOR      │                 │           MYRIOTA  │
-// │             RX├─────────────────┤LEUART_TX           │
-// │               │                 │                    │
-// │             TX├─────────────────┤LEUART_RX           │
-// │               │                 │                    │
-// └───────────────┘                 └────────────────────┘
+┌────────────────┐                 ┌─────────────────┐
+│                │                 │                 │
+│                │                 │                 │
+│     SENSOR     │                 │     MYRIOTA     │
+│    PLATFORM    │                 │     MODULE      │
+│       /        │                 │                 │
+│      MCU       │                 │                 │
+│                │                 │                 │
+│            3.3V├─────────────────┤VEXT             │
+│                │                 │                 │
+│             GND├─────────────────┤GND              │
+│                │                 │                 │
+│              RX├─────────────────┤LEUART_TX        │
+│                │                 │                 │
+│              TX├─────────────────┤LEUART_RX        │
+│                │                 │                 │
+└────────────────┘                 └─────────────────┘
 ```
 The modem expects to receive two bytes which are treated as a uint16_t. Each new data message is added to the `sensor_data` variable. 
 
